@@ -1,0 +1,30 @@
+Sun Jan 28 13:16:06 2024
+ERROR: Shadow framebuffer is not complete, error 0x8cd6
+
+Mon Feb 19 14:19:27 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:20:19 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:22:29 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:22:50 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:24:56 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:28:32 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Mon Feb 19 14:29:39 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Fri Apr 19 16:06:00 2024
+ERROR: Could not allocate offscreen framebuffer
+
+Sat Apr 27 13:41:12 2024
+ERROR: Could not allocate offscreen framebuffer
+

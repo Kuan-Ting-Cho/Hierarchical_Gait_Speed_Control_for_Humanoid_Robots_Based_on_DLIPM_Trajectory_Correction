@@ -1,0 +1,259 @@
+<mujoco model="smallwhitechi">
+    <compiler angle="radian" meshdir="C:/Users/poetr/Desktop/Roli/Linkage_Robot_simulation-master/linkage_robot/meshes" />
+    <size njmax="500" nconmax="100" />
+    <option gravity = "0 0 -9.81" timestep="0.02"/>
+    <asset>
+        <mesh name="base" file="base.STL" />
+        <mesh name="trunk" file="trunk.STL" />
+        <mesh name="L_hip_yaw" file="L_hip_yaw.STL" />
+        <mesh name="L_hip_roll" file="L_hip_roll.STL" />
+        <mesh name="L_hip_pitch" file="L_hip_pitch.STL" />
+        <mesh name="L3" file="L3.STL" />
+        <mesh name="L4" file="L4.STL" />
+        <mesh name="L6" file="L6.STL" />
+        <mesh name="L7" file="L7.STL" />
+        <mesh name="L8" file="L8.STL" />
+        <mesh name="L_ankle_pitch" file="L_ankle_pitch.STL" />
+        <mesh name="L_ankle_roll" file="L_ankle_roll.STL" />
+        <mesh name="L_f_front" file="L_f_front.STL" />
+        <mesh name="L_f_back" file="L_f_back.STL" />
+        <mesh name="L9" file="L9.STL" />
+        <mesh name="L10" file="L10.STL" />
+        <mesh name="R_hip_yaw" file="R_hip_yaw.STL" />
+        <mesh name="R_hip_roll" file="R_hip_roll.STL" />
+        <mesh name="R_hip_pitch" file="R_hip_pitch.STL" />
+        <mesh name="R3" file="R3.STL" />
+        <mesh name="R4" file="R4.STL" />
+        <mesh name="R6" file="R6.STL" />
+        <mesh name="R7" file="R7.STL" />
+        <mesh name="R8" file="R8.STL" />
+        <mesh name="R_ankle_pitch" file="R_ankle_pitch.STL" />
+        <mesh name="R_ankle_roll" file="R_ankle_roll.STL" />
+        <mesh name="R_f_front" file="R_f_front.STL" />
+        <mesh name="R_f_back" file="R_f_back.STL" />
+        <mesh name="R9" file="R9.STL" />
+        <mesh name="R10" file="R10.STL" />
+        <mesh name="breast" file="breast.STL" />
+        <texture type="skybox" builtin="gradient" rgb1="1 0.9 0.7" rgb2="1 0.9 0.7"  width="256" height="256"/>
+        <texture name="wood_texture" file="wood2.png" />
+        <material name="wood_material" texture="wood_texture"/>
+        <material name="obstacle_mat" texture="wood_texture" />    <!-- 障礙物材质 -->
+    </asset>
+    <worldbody>
+        <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="true" />
+        <geom name="floor" pos="0 0 0"  size="3 0.5 1" type="plane" material="wood_material" margin="0.001" condim="3" friction="1 0.005 0.0001"/>
+        <geom name="obstacle" pos="1 0 1.2" size="0.01 0.25 0.10" type="box" material="obstacle_mat"/>
+        <body name="base" pos="0 0 1.0301" >
+        <!-- <body name="base" pos="0 0 1.5"> -->
+            <freejoint name="base" /> 
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.792157 0.819608 0.933333 1" mesh="base" />
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.792157 0.819608 0.933333 1" mesh="breast" />
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="breast" />
+            <!-- <site name="CoM" pos= "0 0 0" type="sphere" size="0.0001" rgba="1 0 0 0.1"/>  -->
+            <body name="trunk" pos="0 0.00025 0.0585" quat="0.707107 -0.707107 0 0">
+                <inertial pos="5.1972e-10 -0.0984798 0" quat="0.707107 0 0 0.707107" mass="0.645032" diaginertia="0.00413623 0.00355034 0.00103793" />
+                <joint name="trunk" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="trunk" />
+                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="trunk" />
+                <geom name="camera" pos="0 -0.185 0" size="0.01 0.01 0.01" type="box" material="obstacle_mat"/>
+                
+            </body>
+            <body name="L_hip_yaw" pos="0 0.105 0">
+                <inertial pos="0.00391746 4.63721e-11 -0.0616421" quat="0 0.707025 0 0.707189" mass="0.840025" diaginertia="0.000921351 0.000895707 0.000373716" />
+                <joint name="L_hip_yaw" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_yaw" />
+                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_yaw" />
+                <body name="L_hip_roll" pos="0 0 -0.064" quat="0.5 0.5 0.5 0.5">
+                    <inertial pos="0.00526654 -0.0954491 0.00587283" quat="1 0 0 4.33964e-05" mass="1.07017" diaginertia="0.0011998 0.000809829 0.000756496" />
+                    <joint name="L_hip_roll" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_roll" />
+                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_roll" />
+                    <body name="L_hip_pitch" pos="0 -0.102 0.006" quat="0.5 -0.5 0.5 -0.5">
+                        <inertial pos="0.09344 0.0500943 0.00650267" quat="0.0856942 0.702156 -0.0883782 0.701301" mass="2.02178" diaginertia="0.00307192 0.00206111 0.00179732" />
+                        <joint name="L_hip_pitch" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_pitch" />
+                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_hip_pitch" />
+                        <body name="L3" pos="0.01728 0.098 0" quat="0 -1 0 0">
+                            <inertial pos="0.0162353 -0.0093761 -0.042" quat="0.183054 0.683002 -0.183054 0.683002" mass="0.0325223" diaginertia="2.2109e-05 1.98014e-05 2.47162e-06" />
+                            <joint name="L3" pos="0 0 0" axis="0 0 1" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L3" />
+                            <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L3" />
+                            <body name="L4" pos="0.051958 -0.030006 -0.04425">
+                                <inertial pos="0.170336 0.0490038 -0.00275" quat="-0.0987154 0.700182 0.0987154 0.700182" mass="0.089481" diaginertia="0.00101579 0.00101298 3.11705e-06" />
+                                <joint name="L4" pos="0 0 0" axis="0 0 1" />
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L4" />
+                                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L4" />
+                            </body>
+                        </body>
+
+                        <body name="L8" pos="0.35795 0 0.00725">
+                            <inertial pos="0.131559 0.0353145 0.00135098" quat="-0.00576963 0.707302 0.00236913 0.706884" mass="2.00878" diaginertia="0.00240461 0.00184281 0.00130688" />
+                            <joint name="L8" pos="0 0 0" axis="0 0 1" frictionloss="1000" damping="1"/>
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L8" />
+                            <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L8" />
+                            <body name="L_ankle_pitch" pos="0.366 0.0175 0" quat="0.999715 0 0 0.0238867">
+                                <inertial pos="0.0269022 -0.0082598 -4.18233e-11" quat="0.49977 0.50023 -0.49977 0.50023" mass="0.463666" diaginertia="0.000310094 0.000280835 0.000128916" />
+                                <joint name="L_ankle_pitch" pos="0 0 0" axis="0 0 1" frictionloss="1000" damping="1"/>
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_ankle_pitch" />
+                                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_ankle_pitch" />
+                                <body name="L_ankle_roll" pos="0.028967 -0.001385 0" quat="0.706904 0.706906 -0.0168905 -0.0168904">
+                                    <inertial pos="0.0555093 -4.23772e-07 0.0180009" quat="0.999991 8.74188e-07 0.00433457 1.98489e-05" mass="0.707474" diaginertia="0.000681732 0.000625669 0.000245532" />
+                                    <joint name="L_ankle_roll" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_ankle_roll" />
+                                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_ankle_roll" />
+                                    <site name="L_end" pos= "0.11175 0 0" type="sphere" size="0.001" rgba="1 0 0 1"/>
+                                    <body name="L_f_front" pos="0.07175 0 0.072" quat="0.707105 0.707108 0 0">
+                                        <inertial pos="0.0151668 0.0134538 -5.8362e-08" quat="0.999239 0 0 -0.0389993" mass="0.281294" diaginertia="0.000334027 0.000291577 7.55394e-05" />
+                                        <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_f_front" />
+                                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_f_front" />
+                                        <!-- <site name="L_f_front_torque" pos= "0 0 0" type="sphere" size="0.0001" rgba="1 0 0 0.1"/>  -->
+                                        <site name="LFR_force" pos= "0.035 0.015 0.04" type="box" size="0.008 0.04 0.03" rgba="0.5 0 0 0.1"/>
+                                        <site name="LFL_force" pos= "0.035 0.015 -0.04" type="box" size="0.008 0.04 0.03" rgba="0.5 0 0 0.1"/>
+                                    </body>
+                                    <body name="L_f_back" pos="0.07175 0 -0.028" quat="0.707105 -0.707108 0 0">
+                                        <inertial pos="0.0151549 0.0134538 -5.8362e-08" quat="0.999236 0 0 -0.0390787" mass="0.281294" diaginertia="0.000334028 0.000291576 7.55394e-05" />
+                                        <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L_f_back" />
+                                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L_f_back" />
+                                        <!-- <site name="L_f_back_torque" pos= "0 0 0" type="sphere" size="0.0001" rgba="1 0 0 0.1"/>  -->
+                                        <site name="LBR_force" pos= "0.035 0.015 -0.04" type="box" size="0.008 0.04 0.03" rgba="0.5 0 0 0.1"/>
+                                        <site name="LBL_force" pos= "0.035 0.015 0.04" type="box" size="0.008 0.04 0.03" rgba="0.5 0 0 0.1"/>
+                                    </body>
+                                </body>
+                            </body>
+                            <body name="L9" pos="0.075 0.07 0" quat="-3.67321e-06 -1 0 0">
+                                <inertial pos="-6.14218e-07 -0.0144143 0.0345" quat="0.500011 0.499989 -0.500011 0.499989" mass="0.0268657" diaginertia="1.44084e-05 1.23819e-05 2.13837e-06" />
+                                <joint name="L9" pos="0 0 0" axis="0 0 1" />
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L9" />
+                                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L9" />
+                                <body name="L10" pos="0 -0.05 0.032" quat="1 0 0 -2.1306e-05">
+                                    <inertial pos="0.1455 0.0262562 -0.0025" quat="-0.0630374 0.704291 0.0630374 0.704291" mass="0.08355" diaginertia="0.000671066 0.000668473 2.94056e-06" />
+                                    <joint name="L10" pos="0 0 0" axis="0 0 1" />
+                                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="L10" />
+                                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="L10" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <body name="R_hip_yaw" pos="0 -0.105 0">
+                <inertial pos="0.00391746 4.65299e-11 -0.0616421" quat="0 0.707025 0 0.707189" mass="0.840025" diaginertia="0.000921351 0.000895707 0.000373716" />
+                <joint name="R_hip_yaw" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_yaw" />
+                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_yaw" />
+                <body name="R_hip_roll" pos="0 0 -0.064" quat="0.5 0.5 0.5 0.5">
+                    <inertial pos="-0.00526654 -0.0954491 0.00587284" quat="1 0 0 -4.33962e-05" mass="1.07017" diaginertia="0.0011998 0.000809829 0.000756496" />
+                    <joint name="R_hip_roll" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_roll" />
+                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_roll" />
+                    <body name="R_hip_pitch" pos="0 -0.102 0.006" quat="0.5 -0.5 0.5 -0.5">
+                        <inertial pos="0.0934417 0.0501054 -0.00650267" quat="0.0872215 0.701411 -0.0849468 0.702281" mass="2.02178" diaginertia="0.00307192 0.00206097 0.00179747" />
+                        <joint name="R_hip_pitch" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_pitch" />
+                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_hip_pitch" />
+                        <body name="R3" pos="0.01728 0.098 0" quat="2.01015e-11 -1 0 0">
+                            <inertial pos="0.0162353 -0.0093761 0.042" quat="0.183054 0.683002 -0.183054 0.683002" mass="0.0325223" diaginertia="2.2109e-05 1.98014e-05 2.47162e-06" />
+                            <joint name="R3" pos="0 0 0" axis="0 0 1" />
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.792157 0.819608 0.933333 1" mesh="R3" />
+                            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="R3" />
+                            <body name="R4" pos="0.0519579 -0.0300063 0.04425">
+                                <inertial pos="0.170336 0.0490038 0.00275" quat="-0.0987154 0.700182 0.0987154 0.700182" mass="0.089481" diaginertia="0.00101579 0.00101298 3.11705e-06" />
+                                <joint name="R4" pos="0 0 0" axis="0 0 1" />
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.792157 0.819608 0.933333 1" mesh="R4" />
+                                <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="R4" />
+                            </body>
+                        </body>
+
+                        <body name="R8" pos="0.357949 0 -0.00725">
+                            <inertial pos="0.131562 0.035296 -0.00135098" quat="-0.00225252 0.706952 0.0044972 0.707244" mass="2.00878" diaginertia="0.0024046 0.00184326 0.00130643" />
+                            <joint name="R8" pos="0 0 0" axis="0 0 1" frictionloss="1000" damping="1"/>
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R8" />
+                            <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R8" />
+                            <body name="R_ankle_pitch" pos="0.366 0.0175 0" quat="0.999715 0 0 0.0238866">
+                                <inertial pos="0.0269022 -0.0082598 -4.42765e-11" quat="0.49977 0.50023 -0.49977 0.50023" mass="0.463666" diaginertia="0.000310094 0.000280835 0.000128916" />
+                                <joint name="R_ankle_pitch" pos="0 0 0" axis="0 0 1" frictionloss="1000" damping="1"/>
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_ankle_pitch" />
+                                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_ankle_pitch" />
+                                <body name="R_ankle_roll" pos="0.0289669 -0.00138503 0" quat="0.706905 0.706905 -0.0168904 -0.0168904">
+                                    <inertial pos="0.0555093 -4.23827e-07 0.0180009" quat="0.999991 8.74188e-07 0.00433457 1.98489e-05" mass="0.707474" diaginertia="0.000681732 0.000625669 0.000245532" />
+                                    <joint name="R_ankle_roll" pos="0 0 0" axis="0 0 1" frictionloss="1000"/>
+                                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_ankle_roll" />
+                                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_ankle_roll" />
+                                    <site name="R_end" pos= "0.11175 0 0" type="sphere" size="0.001" rgba="1 0 0 1"/> 
+                                    <body name="R_f_front" pos="0.07175 0 0.072" quat="0.707107 0.707107 0 0" >
+                                        <inertial pos="0.0151668 0.0134538 -5.83115e-08" quat="0.999239 0 0 -0.0389993" mass="0.281294" diaginertia="0.000334027 0.000291577 7.55394e-05" />
+                                        <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="0.752941 0.752941 0.752941 1" mesh="R_f_front" />
+                                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_f_front" />
+                                        <!-- <site name="R_f_front_torque" pos= "0 0 0" type="sphere" size="0.0001" rgba="1 0 0 0.1"/>  -->
+                                        <site name="RFR_force" pos= "0.035 0.015 0.04" type="box" size="0.008 0.04 0.03" rgba="0 0.5 0 0.1"/>
+                                        <site name="RFL_force" pos= "0.035 0.015 -0.04" type="box" size="0.008 0.04 0.03" rgba="0 0.5 0 0.1"/>
+                                    </body>
+                                    <body name="R_f_back" pos="0.07175 0 -0.028" quat="0.707107 -0.707107 0 0">
+                                        <inertial pos="0.0151549 0.0134538 -5.84177e-08" quat="0.999236 0 0 -0.0390787" mass="0.281294" diaginertia="0.000334028 0.000291576 7.55394e-05" />
+                                        <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R_f_back" />
+                                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R_f_back" />
+                                        <!-- <site name="R_f_back_torque" pos= "0 0 0" type="sphere" size="0.0001" rgba="1 0 0 0.1"/>  -->
+                                        <site name="RBR_force" pos= "0.035 0.015 -0.04" type="box" size="0.008 0.04 0.03" rgba="0 0.5 0 0.1"/>
+                                        <site name="RBL_force" pos= "0.035 0.015 0.04" type="box" size="0.008 0.04 0.03" rgba="0 0.5 0 0.1"/>
+                                    </body>
+                                </body>
+                            </body>
+                            <body name="R9" pos="0.075 0.07 0" quat="-3.67321e-06 1 0 0">
+                                <inertial pos="-6.14199e-07 -0.0144143 -0.0345" quat="0.500011 0.499989 -0.500011 0.499989" mass="0.0268657" diaginertia="1.44084e-05 1.23819e-05 2.13837e-06" />
+                                <joint name="R9" pos="0 0 0" axis="0 0 1" />
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R9" />
+                                <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R9" />
+                                <body name="R10" pos="0 -0.05 -0.032" quat="1 0 0 -2.1306e-05">
+                                    <inertial pos="0.1455 0.0262562 0.0025" quat="-0.0630374 0.704291 0.0630374 0.704291" mass="0.08355" diaginertia="0.000671066 0.000668473 2.94056e-06" />
+                                    <joint name="R10" pos="0 0 0" axis="0 0 1" />
+                                    <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.752941 0.752941 0.752941 1" mesh="R10" />
+                                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="R10" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <equality>
+        <connect name="linkageR_up" active="true" body1="R4" body2="R8" anchor="0.34067 0.09801 0.00025" />
+        <connect name="linkageR_down" active="true" body1="R10" body2="R_ankle_pitch" anchor="0.291 0.05251 0.0055" />
+        <connect name="linkageL_up" active="true" body1="L4" body2="L8" anchor="0.34067 0.09801 -0.00025" />
+        <connect name="linkageL_down" active="true" body1="L10" body2="L_ankle_pitch" anchor="0.291 0.05251 -0.0055" />
+    </equality>
+    <actuator>
+		<motor joint="trunk" name="trunk" gear="1" />
+        <motor joint="L_hip_yaw" name="L_hip_yaw" gear="1"/>
+        <motor joint="L_hip_roll" name="L_hip_roll" gear="1" />
+        <motor joint="L_hip_pitch" name="L_hip_pitch" gear="1" />
+        <motor joint="L8" name="L8" gear="1" />
+        <motor joint="L_ankle_pitch" name="L_ankle_pitch" gear="1" />
+        <motor joint="L_ankle_roll" name="L_ankle_roll" gear="1"/>
+        <motor joint="R_hip_yaw" name="R_hip_yaw" gear="1" />
+        <motor joint="R_hip_roll" name="R_hip_roll" gear="1" />
+        <motor joint="R_hip_pitch" name="R_hip_pitch" gear="1" />
+        <motor joint="R8" name="R8" gear="1" />
+        <motor joint="R_ankle_pitch" name="R_ankle_pitch" gear="1" />
+        <motor joint="R_ankle_roll" name="R_ankle_roll" gear="1" />
+
+	</actuator>
+    <sensor>
+        <touch name="LFR_force" site="LFR_force"/> <!-- (z,x,y) -->
+        <touch name="LFL_force" site="LFL_force"/>
+        <touch name="LBR_force" site="LBR_force"/>
+        <touch name="LBL_force" site="LBL_force"/>
+        <touch name="RFR_force" site="RFR_force"/> 
+        <touch name="RFL_force" site="RFL_force"/>
+        <touch name="RBR_force" site="RBR_force"/>
+        <touch name="RBL_force" site="RBL_force"/>
+
+        
+        <!-- <torque name="L_f_front_torque" site="L_f_front_torque"/> 
+        <torque name="L_f_back_torque" site="L_f_back_torque"/>
+        <torque name="R_f_front_torque" site="R_f_front_torque"/>
+        <torque name="R_f_back_torque" site="R_f_back_torque"/> -->
+
+    </sensor>
+</mujoco>
